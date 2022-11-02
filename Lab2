@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+
+float f(float x){
+    float y = ((x-2)*sqrt((1+x)/(1-x)));
+    return y;
+}
+
+float g(float y){
+    float z = (log(y*y-1));
+    return z;
+}
+
+int main()
+{
+    float x, y, z;
+    printf("enter x from -1 to 1: ");
+    scanf("%f", &x);
+    if ((x>-1) && (x<1)){
+        y = f(x);
+        z = g(y);
+        printf("y = %f", y);
+        printf(" z = %f", z);
+    }
+    else
+        printf("Incorrect x. Try again ");
+    
+    
+}
