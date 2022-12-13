@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+
+double f1(double x){
+    return 8*x*x*x*cos(x);
+    }
+
+double f2(double x){
+    return log(1+sqrt(x)-cos(x));
+}
+
+
+int main()
+{
+    double x=0, y, h;
+    int a =0;
+    printf("Шаг - ");
+    scanf("%lf", &h);
+    a = 2/h;
+    for( int b=0; a>=b; b++){
+        if (b<(a/2)){
+            y = f1(x);
+        }
+        else {
+            y = f2(x);
+        }
+        printf("%f %f\n", x, y);    
+        x = x + h;    
+    
+    }
+    
+}
