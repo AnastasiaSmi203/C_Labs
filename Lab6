@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void fill(int n, int a[])
+{
+    int i;
+    for (i = 0; i < n; i++)
+        a[i] = rand () % 101 - 50;
+}
+void turn(int find, int n, int a[]){
+    int i, j=0, ind = -1;
+    for (i=0;i<n;i++){
+        if (a[i]==find){
+            ind =i;
+            break;
+        }
+    }
+    if (ind!=-1){
+        printf("%d\n", ind);
+        for (i = 0; i < n; i++){
+            if (i<ind){
+                printf("%4d ", a[ind - i-1]);
+            }
+            if (i == ind){
+                printf("%4d ", a[ind]);
+            }
+            if (i>ind){
+                printf("%4d ", a[n - j-1]);
+                j+=1;
+            }
+            
+        }
+    }
+    else{
+        for(i = 0; i<n;i++){
+            printf("%4d ", a[n-i-1]);
+        }
+    }
+    // printf("%4d", a[ind]);
+    // for (i = ind + 1; i < n; i++){
+        
+    // }
+    //printf("\n");
+}
+
+int main()
+{
+    srand(time(NULL));
+    int n, find;
+    printf("n -> ");
+    scanf("%d", &n);
+    int A[n];
+    fill(n, A);
+    int i;
+    for (i = 0; i < n; i++)
+        printf("%4d", A[i]);
+    printf("\n");
+    printf("Enter number -> ");
+    scanf("%d", &find);
+    turn(find, n, A);
+    return 0;
+}
