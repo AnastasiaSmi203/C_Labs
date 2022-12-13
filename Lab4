@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+float func(float x){
+    float f;
+    if (-1 <= x && x <= 1) {
+        f = exp(-2*sin(x));
+    }
+    if (1 < x && x <= 2) {
+//         f = x*x - (1/tan(x));
+        f = x*x - tan(M_PI/2 - x);
+    }
+//     printf("%f \n", x);
+    return f;
+}
+
+float rectangular(int n, float h){
+    float integral = 0, f, x;
+    int i;
+    for(i = 0; i < n; i++){
+//         float x;
+        x = i*h-1 + h/2;
+        f = func(x);
+//         printf("x = %f\n", x);
+//         printf("f = %f\n", f);
+        integral += h*f;
+    }
+    return integral;
+}
+
+int main() {
+    float E, h, integral1=0, integral2=1;
+    printf("Enter E -> ");
+    scanf("%f", &E);
+    int a = -1, b = 2, n = 2;
+    h = (b-a)/(float)n;
+    //printf("%lf\n", h);
+//     printf("I = %f   E = %f \n", ((integral2 - integral1)/3), E);
+//     printf("%i \n", (abs(integral2 - integral1)/(float)3) > E);
+    while ((abs(integral2 - integral1)/(float)3) > E){
+        //printf("n = %lf\n", n);
+        //printf("h = %lf\n", h);
+        integral1 = rectangular(n, h);
+        printf("%f  %i - %i - %i - %f \n", integral1, a, b, n, h);
+        n *= 2;
+        h = (b-a)/(float)n;
+//         printf("h = %lf\n", h);
+        integral2 = rectangular(n, h);
+//         printf("%f \n", integral2);
+    }
+    printf("%.5lf", integral2);
+    return 0;
+}
