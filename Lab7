@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void fill(int n, int k, int a[n][k])
+{
+    int i, j;
+    for (i = 0; i < n; i++)
+        for(j = 0; j<k; j++)
+            a[i][j] = rand () % 101;
+    
+}
+
+int sled(int n, int k, int a[n][k])
+{
+    int i, j, sled = 0;
+    for (i = 0; i < n; i++)
+        for(j = 0; j<k; j++)
+        if (i == j){
+             sled += a[i][j];
+        }
+    return sled;
+}
+
+
+int sump(int n, int k, int a[n][k])
+{
+    int i, j, sump = 0;
+    for (i = 1; i < n; i++)
+        for(j = 0; j<k; j++)
+            sump += a[i][j];
+    return sump;
+}
+
+int main()
+{
+    srand(time(NULL));
+    int A, B, sld, diagp;
+    printf("Квадратная матрица \n");
+    printf("Введите количество строк и столбцов. А -> ");
+    scanf("%d", &A);
+    B = A;
+    int a[A][B];
+    fill(A, B, a);
+    sld = sled(A, B, a);
+    diagp = sump(A, B, a);
+    int i, j;
+    for (i = 0; i < A; i++){
+        for(j = 0; j<B; j++){
+            printf("%4d", a[i][j]);
+        }
+        printf("\n");
+    }
+    printf("sled  = %d \n", sld);
+    printf("diagp  = %d", diagp);
+    return 0;
+}
