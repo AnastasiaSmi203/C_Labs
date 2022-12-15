@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -17,15 +18,15 @@ int sled(int n, int k, int a[n][k])
     for (i = 0; i < n; i++)
         for(j = 0; j<k; j++)
         if (i == j){
-            if(i==0){
-            sled+=a[i][j+1] + a[i][j+2];
-            }
-            else if (i==n-1){
-                sled+=a[i][j-1] + a[i][j-2];
-            }
-            else{
-                sled+=a[i][j-1] + a[i][j+1];
-            }
+            // if(i==0){
+            // sled+=a[i][j+1] + a[i][j+2];
+            // }
+            // else if (i==n-1){
+            //     sled+=a[i][j-1] + a[i][j-2];
+            // }
+            // else{
+            //     sled+=a[i][j-1] + a[i][j+1];
+            // }
              sled += a[i][j];
         }
         
@@ -43,7 +44,7 @@ void zero(int n, int k, int a[n][k]){
     int i, j;
     for (i = 0; i < n; i++)
         for(j = 0; j<k; j++)
-        if (i != j){
+        if ((i != j) && (i != j-1) && (i != j-2)){
             a[i][j]=0;
         }
         
@@ -52,26 +53,28 @@ void zero(int n, int k, int a[n][k]){
 int main()
 {
     srand(time(NULL));
-    int A, sld, num;
-    printf("Квадратная матрица \n");
-    printf("Введите количество строк и столбцов. А -> ");
+    int A, B, sld, num;
+    printf("Создание матрицы \n");
+    printf("Введите количество строк и столбцов. А * B ->  \n");
     scanf("%d", &A);
+    scanf("%d", &B);
     //B = A;
-    int a[A][A];
-    fill(A, A, a);
-    sld = sled(A, A, a);
+    int a[A][B];
+    fill(A, B, a);
+    sld = sled(A, B, a);
     int i, j;
     for (i = 0; i < A; i++){
-        for(j = 0; j<A; j++){
+        for(j = 0; j<B; j++){
             printf("%4d", a[i][j]);
         }
         printf("\n");
     }
+    printf("сумма элементов главной диагонали и двух соседних = %d \n", sld);
     printf("Введите число -> ");
     scanf("%d", &num);
-    printf("сумма элементов главной диагонали и двух соседних = %d \n", sld);
+    // printf("сумма элементов главной диагонали и двух соседних = %d \n", sld);
     if (num<sld){
-        for (i = 0; i < A; i++){
+        for (i = 0; i < B; i++){
             for(j = 0; j<A; j++){
                 // if (i != j){
                 printf("%4d", a[j][i]);
@@ -80,9 +83,9 @@ int main()
         }
     }
     else{
-        zero(A, A, a);
+        zero(A, B, a);
         for (i = 0; i < A; i++){
-            for(j = 0; j<A; j++){
+            for(j = 0; j<B; j++){
                 printf("%4d", a[i][j]);
         }
         printf("\n");
