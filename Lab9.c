@@ -16,20 +16,17 @@ int main() {
     if(str[0] == '\n') return 0;
     do{
         while (str[count]!='\0'){
-            // printf("%d \n", isdigit(str[count]));
             char result_str[100];
-          while(isdigit(str[count])!=0){
+          while((isdigit(str[count])!=0) && (str[count-1]==' ') && (str[count+1]==' ')){
                 result_str[number_letters]= str[count];
                 number_letters= number_letters + 1;
                 count=count+1;
           }
           count=count+1;
-        //   char *res=&result_str;
           sum = sum + atoi(result_str);
           memset(result_str,0,100);
           number_letters = 0;
         }
-        // printf("%s", result_str);
         if (sum!=0){
             printf("%d\n", sum);
         }
@@ -37,8 +34,6 @@ int main() {
             printf("String is empty or don't have numbers\n");
         }
         flag = 1;
-        // printf("%d", sum);
     }while(!flag);
     
-    // return 0;
 }
