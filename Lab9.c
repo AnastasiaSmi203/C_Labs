@@ -2,34 +2,35 @@
 #include <stdlib.h>
 #include <string.h>
 
+int output(int sum){
+    if (sum > 0) {
+        printf("Output: %d\n", sum); 
+    } else {
+        printf("String is empty or doesn't have numbers\n"); 
+    }
+    return 0;
+}
+
 int main() {
     char str[1000];
     printf("Input: ");
     gets(str);
 
-    int sum = 0; // Переменная для хранения суммы чисел
-    char* word = strtok(str, " "); // Разделение строки на слова по пробелам с использованием функции strtok()
+    int sum = 0;
+    char* word = strtok(str, " "); 
 
-    if (str[0] == '\n') return 0; // Проверка на пустую строку (если первый символ - символ новой строки, то возвращаем 0 и завершаем программу)
-
-    while (word != NULL) { // Цикл обработки каждого слова
+    if (str[0] == '\n') return 0; 
+    while (word != NULL) { 
         char* endptr;
-        long num = strtol(word, &endptr, 10); // Преобразование текущего слова в число с использованием функции strtol()
+        long num = strtol(word, &endptr, 10); 
 
         if (endptr == word || *endptr != '\0' || (num == 0 && !isdigit(word[0]))) {
-            // Проверка на успешное преобразование и наличие пробелов перед и после числа, а также исключение случаев, когда слово содержит другие символы помимо чисел
-            // (в данном случае ничего не делаем, пропускаем это слово)
         } else if (num > 0) {
-            sum += num; // Добавление числа к сумме, если оно положительное
+            sum += num; 
         }
-        word = strtok(NULL, " "); // Получение следующего слова
+        word = strtok(NULL, " "); 
     }
-
-    if (sum > 0) {
-        printf("Output: %d\n", sum); // Вывод суммы положительных чисел
-    } else {
-        printf("String is empty or doesn't have numbers\n"); // Вывод сообщения, если строка пустая или не содержит чисел
-    }
+    printf(output(sum));
 
     return 0;
 }
