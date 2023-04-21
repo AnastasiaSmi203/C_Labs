@@ -40,8 +40,7 @@ int main() {
     return 0;
 
   if (Sum(str, &sum) == -1)
-    printf(
-        "String is empty or doesn't have numbers\n");
+    printf("String is empty or doesn't have numbers\n");
   else
     printf("Output: %d\n", sum);
 
